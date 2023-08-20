@@ -1,0 +1,50 @@
+<div class="logout-container">
+    <a href="/#/login"><button class="btn btn-danger" ng-click="logout()">Sair</button></a>
+</div>
+
+<div class="jumbotron">
+    <h1 class="text-center">Cotações</h1>
+</div>
+
+<p ng-show="mensagem.length" class="alert alert-info">
+    {{mensagem}}
+</p>
+
+<div class="row">
+    <div class="col-md-12">
+        <form>
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <a href="/#/cotacoes/new" class="btn btn-primary">Nova Cotação</a>
+                </span>
+
+                <input ng-model="filtro" ng-model-options="{
+                debounce: 500}" class="form-control" placeholder="Filtrar Cotação">
+            </div>
+        </form>
+    </div> <!-- fim col-md-12 -->
+</div>
+
+<br><br><br>
+
+<table class="table">
+    <tr>
+        <th>ID Cotação</th>
+        <th>Nome Segurado</th>
+        <th>CPF</th>
+        <th>Início de Vigencia</th>
+        <th>Término de Vigencia</th>
+        <th>Valor em Risco</th>
+    </tr>
+    <tr ng-repeat="cotacao in cotacoes|
+    filter: filtro" class="painel-animado">
+        <td>{{cotacao._id}}</td>
+        <td>{{cotacao.nome}}</td>
+        <td>{{cotacao.cpf}}</td>
+        <td>{{cotacao.iniciovigencia | date : 'dd/MM/yyyy'}}</td>
+        <td>{{cotacao.terminovigencia | date : 'dd/MM/yyyy'}}</td>
+        <td>{{cotacao.risco| currency:"R$ " }}</td>
+        <td><a href="/#/cotacoes/edit/{{cotacao._id}}"><img src='/images/editar-texto (3).png'></a></td>
+        <td><a ng-click="remover(cotacao)"><img src='/images/remover.png'></a></td>
+    </tr>
+</table>

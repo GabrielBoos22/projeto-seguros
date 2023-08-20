@@ -1,0 +1,116 @@
+<h1 class="text-center">Cadastro</h1>
+<br>
+
+<div class="logout-container">
+  <a href="/#/login"><button class="btn btn-danger" ng-click="logout()">Sair</button></a>
+</div>
+
+<form novalidate name="formulario" class="form" class="row" ng-submit="submeter()">
+  <div class="col-md-6 offset-md-3">
+
+    <p ng-show="mensagem.length" class="alert alert-info">
+      {{mensagem}}
+    </p>
+
+    <!-- <div class="form-group">
+            <label for="ID">Nº Cotação</label>
+            <input type="text" id="disabledInput" class="form-control" name="usuario" required autofocus placeholder="Digite seu ID" ng-model="cotacao.n_cotacao" disabled=""/>        
+            
+        </div> -->
+
+    <div class="form-group">
+      <label for="nome">Nome Segurado</label>
+      <input type="text" id="nome" class="form-control" name="nome" required placeholder="Digite o nome"
+        ng-model="cotacao.nome" />
+      <div ng-if="formulario.nome.$touched && formulario.nome.$invalid">
+        <span ng-if="formulario.nome.$error.required" class="form-control alert-danger">
+          Nome Obrigatório
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cpf">CPF Segurado</label>
+      <input type="text" id="cpf" class="form-control" name="cpf" required placeholder="Digite o CPF"
+        ng-model="cotacao.cpf" ng-maxlength="14" onkeypress="cpfFormatador()"
+        ng-pattern="/^\d{3}\.\d{3}\.\d{3}\-\d{2}$/" />
+      <div ng-if="formulario.cpf.$touched">
+        <span ng-if="formulario.cpf.$error.required" class="form-control alert-danger">
+          CPF Obrigatório
+        </span>
+        <span ng-show="cpfErro" class="form-control alert-danger" ng-model-options="{
+              debounce: 500}">
+          Este CPF já foi utilizado
+        </span>
+        <span ng-if="formulario.cpf.$error.maxlength" class="form-control alert-danger">
+          O CPF ultrapassa o máximo de caracteres
+        </span>
+        <span ng-if="formulario.cpf.$error.pattern && formulario.$submitted" class="form-control alert-danger">
+          O CPF está inválido
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="data" id="data">Início de Vigencia</label>
+      <input type="date" id="data1" class="form-control" name="inicio" required class="iniciovigencia"
+        ng-model="cotacao.iniciovigencia" />
+      <div ng-if="formulario.inicio.$touched">
+        <span ng-if="formulario.inicio.$error.required" class="form-control alert-danger">
+          Inicio de Vigencia Obrigatório
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="data">Término de Vigencia</label>
+      <input type="date" id="data" class="form-control" required name="termino" ng-model="cotacao.terminovigencia" />
+      <div ng-if="formulario.termino.$touched ">
+        <span ng-if="formulario.termino.$error.required" class="form-control alert-danger">
+          Término Obrigatório
+        </span>
+        <span ng-show="dataErro" class="form-control alert-danger" ng-model-options="{
+              debounce: 500}">
+          A data está inválida
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="valor">Valor em Risco</label>
+      <input type="number" id="valor" class="form-control" min="5000" max="1000000" name="valor" required
+        placeholder="5.000 até 1.000.000" ng-model="cotacao.risco" />
+      <div ng-if="formulario.valor.$touched && formulario.valor.$invalid">
+        <span ng-if="formulario.valor.$error.required" class="form-control alert-danger">
+          Valor Obrigatório
+        </span>
+        <span ng-if="formulario.valor.$error.min" class="form-control alert-danger">
+          Valor minimo é de R$5000,00
+        </span>
+        <span ng-if="formulario.valor.$error.max" class="form-control alert-danger">
+          Valor máximo é de R$1.000.000,00
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Coberturas</label>
+      <select name="cobertura" class="form-control" required ng-controller="CoberturasController"
+        ng-model="cotacao.cobertura" ng-options="cobertura._id as cobertura.nome for cobertura in coberturas">
+        <option value="">Selecione uma cobertura </option>
+      </select>
+      <div ng-if="formulario.cobertura.$touched  && formulario.cobertura.$invalid">
+        <span ng-if="formulario.valor.$error.required" class="form-control alert-danger">
+          Cobertura Obrigatória
+        </span>
+      </div>
+    </div>
+
+    <br>
+    <button class="btn btn-primary" type="submit">Salvar</button>
+    <a href="/#/" class="btn btn-primary" meu-focus ng-click="voltar()">Voltar</a>
+    <button class="btn btn-primary" type="button" ng-show="formulario.$valid" ng-click="elaborarProposta()"
+      href="/#/proposta">Elaborar Proposta</button>
+    <hr>
+  </div>
+</form>

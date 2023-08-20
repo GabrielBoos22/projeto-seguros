@@ -1,0 +1,43 @@
+<h1 class="text-center">&emsp; Apolice</h1>
+<br><br>
+<br><br>
+
+<div class="logout-container">
+    <a href="/#/login"><button class="btn btn-danger" ng-click="logout()">Sair</button></a>
+</div>
+
+<table class="table">
+    <tr>
+        <th>Nº Apolice</th> 
+        <th>Nome Segurado</th>
+        <th>CPF</th>
+        <th>Início de Vigencia</th>
+        <th>Término de Vigencia</th>
+        <th>Valor em Risco</th>
+        <th>Valor Pago</th>
+    </tr>
+    <tr ng-repeat="apolice in apolices" class="painel-animado">
+        <td>{{apolice.n_apolice}}</td>  
+        <td>{{apolice.nome}}</td>
+        <td>{{apolice.cpf}}</td>
+        <td>{{apolice.iniciovigencia | date : 'dd/MM/yyyy'}}</td>
+        <td>{{apolice.terminovigencia | date : 'dd/MM/yyyy'}}</td>
+        <td>{{apolice.risco| currency:"R$ " }}</td>
+        <td>{{apolice.valorpago | currency:"R$ "}}</td>
+        <td><img src='/images/confirme.png'></td>
+        
+    </tr>
+    
+</table>
+<br><br><br>
+<div class="text-center">
+    <a href="/#/" class="btn btn-primary">Voltar</a>
+    <a class="btn btn-primary">Imprimir Apólice</a>
+    <a class="btn btn-primary">Endosso</a>
+
+</div>
+
+
+
+   
+    

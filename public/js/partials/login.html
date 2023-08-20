@@ -1,0 +1,77 @@
+<form novalidate name="formulario" class="form" class="row" ng-submit="submeter()">
+<div class="tela-login">
+    <h1 class="titulo1">Seguros</h1>
+    <h2 class="titulo2"> Login</h2>
+
+    <div class="form-group">
+        <input class="input_texto" name="username" type="text" ng-model="login.username" placeholder="Username" required<br>
+        <span ng-if="formulario.username.$error.required" class="form-control alert-danger">
+            Username Obrigatório
+        </span>
+        <span ng-show="usuarioErro" class="form-control alert-danger">
+            Este usuário não existe
+        </span> 
+    </div>
+
+    <div class="form-group">
+        <input class="input_texto" name="password" type="password" ng-model="login.password" placeholder="Senha" required> <br>
+        <span ng-if="formulario.password.$error.required" class="form-control alert-danger">
+            Senha Obrigatória
+        </span>
+        <span ng-show="senhaErro" class="form-control alert-danger" ng-model-options="{
+            debounce: 500}">
+            Esta senha está inválida
+          </span> 
+    </div>
+
+    <button class="botao" type="submit">Enviar</button>
+</div>
+</form>
+<style>
+    .titulo1{
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .titulo2{
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: white;
+    }
+
+    .tela-login {
+        background-color: rgba(0, 0, 0, 0.9);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 80px;
+        border-radius: 15px;
+        color: white;
+    }
+
+    .input_texto{
+        padding: 15px;
+        border: none;
+        outline: none;
+        font-size: 15px;
+        color: black;
+    }
+
+    .botao{
+        background-color: dodgerblue;
+        border: none;
+        padding: 15px;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    .botao:hover{
+        background-color: deepskyblue;
+    }
+    
+</style>

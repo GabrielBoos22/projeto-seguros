@@ -1,0 +1,136 @@
+<h1 class="text-center">&emsp; Cadastro</h1>
+
+<div class="logout-container">
+  <a href="/#/login"><button class="btn btn-danger" ng-click="logout()">Sair</button></a>
+</div>
+<br>
+<br>   
+    
+    <form novalidate name="formulario" class="form" class="row" ng-submit="submeter()">
+      <div class="col-md-4 offset-md-2">
+        
+
+        <div class="form-group">
+            <label for="ID">Nº Proposta</label>
+            <input type="text" id="disabledInput" class="form-control" name="usuario" autofocus ng-model="proposta.n_proposta" disabled=""/>        
+            
+        </div>
+  
+        
+        <div class="form-group">
+          <label for="cpf">CPF Segurado</label>
+          <input type="text" id="disabledInput" class="form-control" name="cpf" ng-model="proposta.cpf" disabled="" />        
+        </div>   
+
+        <div class="form-group">
+            <label for="data" id="data" >Início de Vigencia</label>
+              <input type="date" id="disabledInput" class="form-control" name="inicio" class="iniciovigencia" ng-model="proposta.iniciovigencia" disabled="" />        
+        </div>    
+        
+        
+        <div class="form-group">
+          <label for="valor">Valor em Risco</label>
+          <input type="number" id="disabledInput" class="form-control" min="5000" max="1000000" name="valor" ng-model="proposta.risco" disabled=""/>        
+        </div>
+        
+        <div class="form-group">
+            <label for="valor">Valor a ser pago</label>
+            <input type="number" id="disabledInput" class="form-control" max="1000000" name="valor" ng-model="proposta.valorpago " disabled=""/>        
+        </div>   
+        
+
+      </div>
+      
+      <div class="form-group col-md-4 offset-md-1" >
+        <div class="form-group">
+          <label for="data" id="data" >Início de Vigencia</label>
+          <input type="date" id="disabledInput" class="form-control" name="inicio" class="iniciovigencia" ng-model="proposta.iniciovigencia" disabled="" />        
+      </div>  
+
+        <div class="form-group" >
+          <label for="nome">Nome Segurado</label>
+          <input type="text" id="disabledInput" class="form-control" name="nome" ng-model="proposta.nome" disabled=""/>        
+        </div> 
+
+        <div class="form-group">
+          <label for="data">Término de Vigencia</label>
+          <input type="date" id="disabledInput" class="form-control" name="termino" ng-model="proposta.terminovigencia" disabled=""/>  
+        </div>    
+
+        <div class="form-group">
+          <label>Coberturas</label>
+          <select name="cobertura" class="form-control"  id="disabledInput" disabled=""
+          ng-controller="CoberturasController"
+          ng-model="proposta.cobertura"
+          ng-options="cobertura._id as cobertura.nome for cobertura in coberturas" >
+              <option value="">Selecione uma cobertura </option>
+          </select>
+        </div>
+
+        <label>Forma de pagamento</label>
+        <select name="pagamento" class="form-control" required 
+        ng-model="proposta.pagamento" id="pagamento" >
+            <option value="">Selecione uma forma de pagamento </option>
+            <option value="1">A vista ({{proposta.valorpago | currency:"R$ "}})</option>
+            <option value="2">Parcelado (12 vezes de {{proposta.valorpago / 12 | currency:"R$ "}} ) </option>
+        </select>
+        <div ng-if="formulario.pagamento.$touched">
+          <span ng-if="formulario.pagamento.$error.required" class="form-control alert-danger">
+            Cobertura  Obrigatória
+          </span>
+        </div>
+
+      </div>
+      
+      <div class="col-md-12 my-1 text-center" >
+        <br><br><br>
+        <a href="/#/" class="btn btn-primary botao" meu-focus ng-click="voltar()">Voltar</a>
+        <a class="btn btn-primary botao" type="submit" ng-disabled="formulario.$invalid" ng-click="elaborarApolice()" meu-focus >Formar Apólice</a>
+      </div>
+     
+    </form>
+
+
+    
+    
+    <br>
+    <br>
+
+   
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="form-group">
+      <label for="quantidade">Quantidade</label>
+      <input type="number" min="1" step="1" id="quantidade" class="form-control" value="1" required/>
+  </div>
+  
+  <div class="form-group">
+      <label for="valor">Valor</label>
+      <input id="valor" type="number" class="form-control"  min="0.01" step="0.01" value="0.0" required max=""/>
+  </div>
+   -->
